@@ -53,9 +53,16 @@ python app.py
 
  The model architecture is based on EfficientNet and has been fine-tuned for specific classification tasks.
 
-## Contributing
+## Contributors
+* Akash Vinod
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+* Akshitha Balan
+
+* Devdutt S
+
+* Akshay Govind S
+
+* Thushar S K
 
 
 ## Contact
