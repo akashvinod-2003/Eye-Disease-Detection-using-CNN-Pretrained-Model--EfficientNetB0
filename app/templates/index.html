@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Disease Prediction</title>
+    <link rel="icon" type="image/png" href="static/vision.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <br><br><br><br>
+        <h1>Eye Disease Prediction</h1>
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+            <div class="upload-area" id="dropZone">
+                <div class="upload-instructions">
+                    <span class="upload-icon">📤</span>
+                    <p>Drag and drop an image here</p>
+                    <p>or</p>
+                    <button type="button" class="browse-btn">Browse Files</button>
+                    <input type="file" name="file" accept="image/*" hidden id="fileInput">
+                </div>
+                <div id="uploadStatus" style="display: none;">
+                    <img id="imagePreview" class="preview-image" alt="Uploaded Image">
+                    <div class="button-group">
+                        <button type="button" id="analyzeBtn" class="analyze-btn">Analyze Image</button>
+                        <button type="button" id="changeBtn" class="change-btn">Change Image</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/', true);
+
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const uploadInstructions = document.querySelector('.upload-instructions');
+                    uploadInstructions.style.display = 'none';
+                    document.getElementById('uploadStatus').style.display = 'block';
+                    document.getElementById('dropZone').style.cursor = 'default';
+                    
+                    // Show image preview
+                    const imagePreview = document.getElementById('imagePreview');
+                    imagePreview.src = URL.createObjectURL(file);
+                    
+                    // Setup button handlers
+                    document.getElementById('analyzeBtn').onclick = function() {
+                        window.location.href = '/loading';
+                    };
+                    document.getElementById('changeBtn').onclick = function() {
+                        uploadInstructions.style.display = 'flex';
+                        document.getElementById('uploadStatus').style.display = 'none';
+                        document.getElementById('dropZone').style.cursor = 'pointer';
+                        document.getElementById('fileInput').value = '';
+                    };
+                } else {
+                    alert('Error uploading file: ' + xhr.responseText);
+                }
+            };
+
+            xhr.onerror = function () {
+                alert('Network error occurred');
+            };
+
+            xhr.send(formData);
+        }
+
+        // Function to initialize all event listeners
+        function initializeEventListeners() {
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const browseBtn = document.querySelector('.browse-btn');
+
+            browseBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.add('highlight'));
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.remove('highlight'));
+            });
+
+            dropZone.addEventListener('drop', handleDrop);
+        }
+
+        // Initialize event listeners when page loads
+        initializeEventListeners();
+
+        function handleDrop(e) {
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.type.startsWith('image/')) {
+                    uploadFile(file);
+                } else {
+                    alert('Please upload an image file');
+                }
+            }
+        }
+
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.type.startsWith('image/')) {
+                    uploadFile(file);
+                } else {
+                    alert('Please upload an image file');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

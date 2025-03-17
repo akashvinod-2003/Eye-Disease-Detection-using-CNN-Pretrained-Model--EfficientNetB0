@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing - Eye Disease Prediction</title>
+    <link rel="icon" type="image/png" href="static/vision.png">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300" rel="stylesheet">
+    <style>
+        body, html {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            font-family: 'Raleway';
+            overflow: hidden;
+            background-color: #080808;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            font-weight: 200;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .loader-gif {
+            width: 500px;
+            height: 400px;
+            margin: 20px auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .progress-wrapper {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            height: 100px;
+            margin: 20px 0;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 50%;
+            height: 2px;
+            background: #ffffff;
+            transition: width 0.5s ease-out;
+            width: 0;
+        }
+
+        .count {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+            font-weight: 100;
+            font-size: 3em;
+            margin-top: -1.33em;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .message {
+            color: #ffffff;
+            font-size: 1.2em;
+            margin: 15px 0;
+            opacity: 0.9;
+            font-weight: 200;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .sub-message {
+            color: #cccccc;
+            font-size: 1em;
+            margin-top: 10px;
+            opacity: 0.7;
+            font-weight: 200;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .important-note {
+            color: #ffd700;
+            font-size: 0.9em;
+            margin-top: 20px;
+            max-width: 400px;
+            line-height: 1.4;
+            text-align: center;
+            font-weight: 200;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        @keyframes progressGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .progress-bar {
+            animation: progressGlow 2s infinite;
+        }
+
+        /* Add these media queries at the end of the style section */
+        @media screen and (max-width: 1024px) {
+            .loader-gif {
+                width: 400px;
+                height: 320px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .count {
+                font-size: 2.5em;
+            }
+
+            .progress-wrapper {
+                width: 90%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .loader-gif {
+                width: 300px;
+                height: 240px;
+            }
+
+            h1 {
+                font-size: 2em;
+                margin-bottom: 1.5rem;
+            }
+
+            .count {
+                font-size: 2em;
+            }
+
+            .message {
+                font-size: 1.1em;
+                margin: 12px 0;
+            }
+
+            .sub-message {
+                font-size: 0.9em;
+            }
+
+            .important-note {
+                font-size: 0.8em;
+                margin: 15px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            .loader-gif {
+                width: 240px;
+                height: 192px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 1rem;
+            }
+
+            .count {
+                font-size: 1.8em;
+            }
+
+            .progress-wrapper {
+                width: 95%;
+                height: 80px;
+                margin: 15px 0;
+            }
+
+            .message {
+                font-size: 1em;
+                margin: 10px 0;
+            }
+
+            .sub-message {
+                font-size: 0.8em;
+            }
+
+            .important-note {
+                font-size: 0.75em;
+                margin: 12px 15px;
+                max-width: 300px;
+            }
+        }
+
+        @media screen and (max-height: 700px) {
+            .loader-gif {
+                width: 240px;
+                height: 192px;
+                margin: 10px auto;
+            }
+
+            h1 {
+                margin-bottom: 1rem;
+            }
+
+            .progress-wrapper {
+                margin: 10px 0;
+            }
+
+            .message, .sub-message, .important-note {
+                margin: 8px 0;
+            }
+        }
+    </style>
+    <script>
+        function updateProgress() {
+            const progressBar = document.querySelector('.progress-bar');
+            const progressText = document.querySelector('.count');
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                if (progress < 90) {
+                    progress += Math.random() * 15;
+                    progress = Math.min(progress, 90);
+                    progressBar.style.width = progress + '%';
+                    progressText.textContent = Math.round(progress) + '%';
+                }
+            }, 500);
+
+            if (!window.location.href.includes('process=true')) {
+                setTimeout(function() {
+                    window.location.href = '/loading?process=true';
+                }, 500);
+            } else {
+                const container = document.querySelector('.container');
+                const progressWrapper = document.querySelector('.progress-wrapper');
+                
+                setTimeout(() => {
+                    progressBar.style.width = '100%';
+                    progressText.textContent = '100%';
+                    
+                    progressWrapper.classList.add('progress-complete');
+                    container.classList.add('fade-out');
+                    
+                    setTimeout(() => {
+                        window.location.href = '{{ url_for("results", prediction=prediction, image_url=image_url, explanation_url=explanation_url) }}';
+                    }, 1000);
+                }, 2000);
+            }
+        }
+
+        window.onload = updateProgress;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Processing Your Image</h1>
+        <img src="{{ url_for('static', filename='loader2.gif') }}" alt="Loading..." class="loader-gif">
+        <div class="progress-wrapper">
+            <div class="progress-bar"></div>
+            <div class="count">0%</div>
+        </div>
+        <div class="message">Analyzing your eye image for potential conditions...</div>
+        <div class="sub-message">This process may take a few moments</div>
+        <div class="important-note">
+            Please do not refresh or close this page. The analysis requires complex computations to ensure accurate results.
+        </div>
+    </div>
+</body>
+</html>

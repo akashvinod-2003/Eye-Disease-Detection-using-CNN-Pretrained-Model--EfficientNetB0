@@ -1,0 +1,9 @@
+Flask
+torchvision
+efficientnet-pytorch
+Pillow
+lime
+scikit-image
+matplotlib
+numpy
+torch

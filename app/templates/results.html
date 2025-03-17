@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="static/vision.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Eye Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Results</h1>
+        <div class="results">
+            <h2>Prediction: {{ prediction }}</h2>
+            <div class="explanation-section">
+                <h3>Model Explanation</h3>
+                <p>Highlighted areas contributed most to the prediction.</p>
+                <img src="{{ explanation_url }}" alt="Explanation Image" class="preview-image">
+            </div>
+            <div class="action-buttons">
+                <a href="/" class="upload-another-btn">Upload Another Image</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
