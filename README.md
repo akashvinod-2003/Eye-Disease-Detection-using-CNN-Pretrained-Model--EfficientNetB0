@@ -21,7 +21,7 @@ This project is a web-based application that combines deep learning with a user-
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/akashvinod-2003/Eye-Disease-Detection-using-CNN-Pretrained-Model--EfficientNetB0
 ```
 
 2. Install the required dependencies:
