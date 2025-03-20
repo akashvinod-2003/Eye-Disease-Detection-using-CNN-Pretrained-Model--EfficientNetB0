@@ -68,6 +68,6 @@ python app.py
 ## Contact
 akasheroor1@gmail.com
 
-[![LinkedIn](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fpng%2F18930480-linkedin-logo-png-linkedin-icon-transparent-png&psig=AOvVaw1tUIjNi_AcU0wp7IR8aukk&ust=1742545737062000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJDajvmemIwDFQAAAAAdAAAAABAE)](https://www.linkedin.com/in/akasheroor)
+[![LinkedIn](https://www.vecteezy.com/png/18930480-linkedin-logo-png-linkedin-icon-transparent-png)](https://www.linkedin.com/in/akasheroor)
 
 
