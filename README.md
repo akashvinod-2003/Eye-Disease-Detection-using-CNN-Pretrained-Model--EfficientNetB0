@@ -45,7 +45,7 @@ pip install -r requirement.txt
 python app.py
 ```
 
-2. Open a web browser and navigate to `http://localhost:5000`(http://localhost:5000)
+2. Open a web browser and navigate to `http://localhost:5000`
 
 3. Upload an image through the web interface to get classification results
 
@@ -68,6 +68,6 @@ python app.py
 ## Contact
 akasheroor1@gmail.com
 
-[![LinkedIn](https://www.vecteezy.com/png/18930480-linkedin-logo-png-linkedin-icon-transparent-png)](https://www.linkedin.com/in/akasheroor)
+[![LinkedIn](https://banner2.cleanpng.com/20180612/ylz/aa8882jdw.webp)](https://www.linkedin.com/in/akasheroor)
 
 
