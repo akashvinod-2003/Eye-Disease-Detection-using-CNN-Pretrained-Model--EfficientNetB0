@@ -67,3 +67,5 @@ python app.py
 
 ## Contact
 akasheroor1@gmail.com
+[LINKEDIN](https://www.linkedin.com/in/akash-vinod-040399248/)
+
