@@ -68,6 +68,7 @@ python app.py
 ## Contact
 akasheroor1@gmail.com
 
-[![LinkedIn](https://banner2.cleanpng.com/20180612/ylz/aa8882jdw.webp)](https://www.linkedin.com/in/akasheroor)
+
+[![LinkedIn](https://www.freeiconspng.com/download-ico/2026)](https://www.linkedin.com/in/akasheroor)
 
 
