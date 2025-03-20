@@ -69,6 +69,6 @@ python app.py
 akasheroor1@gmail.com
 
 
-[![LinkedIn](https://www.freeiconspng.com/download-ico/2026)](https://www.linkedin.com/in/akasheroor)
+[![LinkedIn](https://www.freeiconspng.com/download-ico/2031)](https://www.linkedin.com/in/akasheroor)
 
 
