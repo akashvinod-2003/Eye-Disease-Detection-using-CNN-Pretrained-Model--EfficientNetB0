@@ -45,7 +45,7 @@ pip install -r requirement.txt
 python app.py
 ```
 
-2. Open a web browser and navigate to `http://localhost:5000`
+2. Open a web browser and navigate to `http://localhost:5000`(http://localhost:5000)
 
 3. Upload an image through the web interface to get classification results
 
